@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - 80:80
+  mysql:
+    image: mysql:latest
+    environment:
+        MYSQL_DATABASE: CyberDream
+        MYSQL_USER: CyberDreamUser
+        MYSQL_PASSWORD: CyberDreamSecret
+        MYSQL_ROOT_PASSWORD: GYD_232SDh
+  php:
+    image: php:7.4-fpm-alpine
