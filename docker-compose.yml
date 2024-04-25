@@ -40,7 +40,7 @@ services:
       - '8000:80'
     restart: unless-stopped
     volumes:
-      - ./wordpress:/var/www/html
+      - ./wp-content/:/var/www/html/wp-content
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: '${MYSQL_DATABASE}'
@@ -57,10 +57,10 @@ services:
       - '80:80'
     volumes: 
       - './default.conf:/etc/nginx/default.conf' 
-      - './wordpress:/var/www/html'
+      - ./wp-content/:/var/www/html/wp-content
     depends_on:
       - phpmyadmin
-      # - wordpress
+      - wordpress
     networks:
       - wpsite
 networks:
