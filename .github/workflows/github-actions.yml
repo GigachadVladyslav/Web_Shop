@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - DockerBack
+      - main
 
 jobs:
   build-and-deploy:
@@ -28,9 +29,9 @@ jobs:
       - name: SSH Deploy to Server
         uses: appleboy/ssh-action@master
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          key: ${{ secrets.DOCKERHUB_TOKEN }}
-          script: |
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+        script: |
             cd /path/to/your/docker-compose/folder
             docker-compose down
             docker-compose pull
