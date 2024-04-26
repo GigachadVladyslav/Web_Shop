@@ -23,7 +23,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: unless-stopped
     ports:
-      - '8080:80'  # Примените порт, который вы хотите использовать для phpMyAdmin
+      - '8080:80'
     env_file: .env
     environment:
       PMA_HOST: db
@@ -40,7 +40,7 @@ services:
       - '8000:80'
     restart: unless-stopped
     volumes:
-      - ./wp-content/:/var/www/html/wp-content
+      - './wordpress:/var/www/html'
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: '${MYSQL_DATABASE}'
@@ -56,8 +56,8 @@ services:
     ports:
       - '80:80'
     volumes: 
-      - './default.conf:/etc/nginx/default.conf' 
-      - ./wp-content/:/var/www/html/wp-content
+      - './nginx/default.conf:/etc/nginx/default.conf' 
+      - './wordpress:/var/www/html'
     depends_on:
       - phpmyadmin
       - wordpress
