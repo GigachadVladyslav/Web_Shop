@@ -68,4 +68,5 @@ networks:
     driver: bridge 
 
 volumes:
-  db_data:
+  db_data: 
+    driver: local
