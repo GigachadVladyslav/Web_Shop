@@ -49,20 +49,24 @@ services:
     networks:
       - wpsite
 
-
 # Nginx
   nginx:
     image: nginx:stable-alpine
     ports:
-      - '80:80'
+      - 80:80
+      - 443:443
+    restart: unless-stopped
     volumes: 
-      - './nginx/default.conf:/etc/nginx/default.conf' 
+      - ./nginx/default.conf:/etc/nginx/default.conf:ro
+      # - ./certbot/www:/var/www/certbot/:ro
+      # - ./certbot/conf/:/etc/nginx/ssl/:ro
       - './wordpress:/var/www/html'
     depends_on:
       - phpmyadmin
       - wordpress
     networks:
       - wpsite
+
 networks:
   wpsite:
     driver: bridge 
@@ -70,3 +74,19 @@ networks:
 volumes:
   db_data: 
     driver: local
+
+
+
+
+  # certbot
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   depends_on:
+  #     - nginx
+  #   volumes:
+  #     - ./certbot/www/:/var/www/certbot/:rw
+  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+  #   networks:
+  #     - wpsite
+
+
