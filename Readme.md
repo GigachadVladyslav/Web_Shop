@@ -20,21 +20,14 @@ Prerequisites
 
 Setup
 
-    Clone this repository:
-
-git clone https://github.com/GigachadVladyslav/Web_Shop.git
+    Clone this repository: git clone https://github.com/GigachadVladyslav/Web_Shop.git
 
 Navigate to the project directory:
 
-bash
-
-cd <project_directory>
 
 Usage
 
-    Start the services:
-
-docker-compose up -d
+    Start the services: docker-compose up -d
 
 Access WordPress at http://localhost:8000
 
