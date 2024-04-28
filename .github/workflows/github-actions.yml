@@ -1,0 +1,38 @@
+name: Docker Build and Deploy
+
+on:
+  push:
+    branches:
+      - DockerBack
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./docker-compose.yml
+          push: true
+          tags: |
+            abobys/db:latest
+            abobys/phpmyadmin:latest
+            abobys/wordpress:latest
+            abobys/nginx:latest
+
+      - name: SSH Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.USERNAME }} // need create secret in github
+          password: ${{ secrets.PASSWORD }} // need create secret in github
+        script: |
+            cd /path/to/your/docker-compose/folder
+            docker-compose down
+            docker-compose pull
+            docker-compose up -d
