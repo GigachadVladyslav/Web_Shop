@@ -29,8 +29,8 @@ jobs:
       - name: SSH Deploy to Server
         uses: appleboy/ssh-action@master
         with:
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          username: ${{ secrets.USERNAME }} // need create secret in github
+          password: ${{ secrets.PASSWORD }} // need create secret in github
         script: |
             cd /path/to/your/docker-compose/folder
             docker-compose down
