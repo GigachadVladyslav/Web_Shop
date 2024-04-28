@@ -65,7 +65,6 @@ Customization
 
     Nginx Configuration:
         Modify ./nginx/default.conf to customize Nginx server configurations.
-        Also there is a basic Nginx configuration with LoadBalancer, also I wanted to add a ssl certificate so that there would be no information leakage on the site. As you can see I wanted to use certbot.
 
 Networks
 
